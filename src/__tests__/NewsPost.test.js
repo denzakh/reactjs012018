@@ -1,4 +1,4 @@
-яйimport React from 'react';
+import React from 'react';
 import NewsPost from '../NewsPost';
 import {shallow} from 'enzyme';
 

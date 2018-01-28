@@ -6,6 +6,6 @@ export default class NewsPost extends React.Component {
   render() {
     const {info, del, id} = this.props;
     
-    return <div className="news-post" id={id} onClick={del}>{info}</div>;
+    return <div className="news-post" id={id} onClick={del}><p>{info}</p></div>;
   }
 }
