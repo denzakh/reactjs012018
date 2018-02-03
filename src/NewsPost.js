@@ -4,8 +4,8 @@ import "./NewsPost.css";
 
 export default class NewsPost extends React.Component {  
   render() {
-    const {info, del, id} = this.props;
+    const {text, id} = this.props;
     
-    return <div className="news-post" id={id} onClick={del}><p>{info}</p></div>;
+    return <div className="news-post" id={id} ><p>{text}</p></div>;
   }
 }

@@ -7,9 +7,9 @@
   cursor: pointer;
 }
 
-.news-post:hover {
+/* .news-post:hover {
   background-color: #f37171;
-}
+} */
 
 .comment-input {
   border-radius: 3px;

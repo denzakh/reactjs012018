@@ -4,61 +4,29 @@ import NewsPost from "./NewsPost";
 import "./App.css";
 
 export default class App extends React.Component {
-  state = { valueList: [{ key: 0, value: "empty value" }], tempValue: "" };
+  state = { news: [], newsInput: "" };
 
   handleChange = event => {
-    let newTempValue = event.target.value;
-    this.setState({ tempValue: newTempValue });
+    let newsInput = event.target.value;
+    this.setState({ newsInput });
   };
 
-  handleSubmit = event => {
-    let newValue = this.state.tempValue;
-    if (newValue) {
-      let valueList = this.state.valueList;
-      let newKey = "" + Math.random();
-      // console.log(valueList, newValue, newKey);
-      valueList.push({
-        key: newKey,
-        value: newValue
-      });
-      this.setState(state => ({
-        ...state,
-        valueList: valueList,
-        tempValue: ""
-      }));
+  handleNewPost = event => {
+    if (this.state.newsInput) {
+
+      this.setState(state => {
+        return { news: [...state.news, {text: +state.newsInput}], newsInput: "" }; });
     }
   };
 
-  handleDelItem = event => {
-    let valueList = this.state.valueList;
-    let newList = valueList.filter(item => {
-      return item.key !== event.target.id;
-    });
-    this.setState(state => ({ ...state, valueList: newList }));
-  };
-
   render() {
-    const { valueList, tempValue } = this.state;
-    return (
-      <div className="App">
-        {valueList.map(post => {
-          return (
-            <NewsPost
-              key={post.key}
-              id={post.key}
-              info={post.value}
-              del={this.handleDelItem}
-            />
-          );
+    return <div className="App">
+        {this.state.news.map((post) => {
+          return <NewsPost key={post.text} text={post.text} />;
         })}
 
-        <input
-          onChange={this.handleChange}
-          value={tempValue}
-          className="comment-input"
-        />
-        <button onClick={this.handleSubmit}>Добавить</button>
-      </div>
-    );
+        <input onChange={this.handleChange} value={this.state.newsInput} className="comment-input" />
+        <button onClick={this.handleNewPost}>Добавить</button>
+      </div>;
   }
 }
