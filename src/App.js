@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import PersonalForm from './PersonalForm';
-// import CardForm from './CardForm';
+import CardForm from './CardForm';
 import Step from './Step';
 
 
@@ -10,8 +10,7 @@ export default
 class App extends React.Component {
   state = { step: 1, firstName: "", lastName: "", email: "", cardNumber: "" };
 
-  handleTabClick = e => {
-    let step = e.target.value;
+  handleTabClick = (step) => {
     this.setState({ step: step });
   };
 
@@ -43,6 +42,16 @@ class App extends React.Component {
     }
   }
 
+  renderForm = () => {
+    if(this.state.step === 1) {
+      return <PersonalForm onChangeForm={this.handleChangeForm} firstName={this.state.firstName} lastName={this.state.lastName} email={this.state.email} />;
+    } else if (this.state.step === 2) {
+      return <CardForm onChangeForm={this.handleChangeForm} cardNumber={this.state.cardNumber} />;
+    } else {
+      return "Поздравляем!";
+    }
+  }
+
   render() {
     let stepsArr = [
       { number: 1, title: "Personal information" }, 
@@ -63,9 +72,7 @@ class App extends React.Component {
     return <div>
         <div className="container">
           <div className="tab-panel">{steps}</div>
-          <div className="form-content">
-            <PersonalForm onChangeForm={this.handleChangeForm} firstName={this.state.firstName} lastName={this.state.lastName} email={this.state.email} />
-          </div>
+          <div className="form-content">{this.renderForm()}</div>
           <div className="button-panel">
             <button className="button-next" onClick={this.handleClickNextForm} disabled={!this.isFormCommitable()}>
               Next
