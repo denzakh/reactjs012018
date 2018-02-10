@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
 
-export default class VideoPlayer extends Component {
+export default class ModalButton extends Component {
 
   static defaultProps = {
-    displayName: "VideoPlayer",
-    linkTitle: "VideoPlayer",
-    path: "/player"
+    displayName: "ModalButton",
+    linkTitle: "ModalButton",
+    path: "/modal"
   }
 
   render() {
     return <div path={this.path} linkTitle={this.linkTitle}>
-        VideoPlayer1
+        ModalButton 1
       </div>;
   }
 }
