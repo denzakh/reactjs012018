@@ -7,7 +7,7 @@ import VideoPlayer from './VideoPlayer';
 
 class App extends Component {
   render() {
-    return <CardNumberHolder />
+    return <VideoPlayer />;
     // <Switcher>
       //   <VideoPlayer />
       //   <CardNumberHolder />
