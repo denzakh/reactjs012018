@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import "./App.css";
-import { addListener, removeListener, isAuthorized } from "./AuthorizeApi";
+import { addListener, removeListener } from "./AuthorizeApi";
 import { Link, Switch, Route, Redirect } from "react-router-dom";
 import Private from "./Private";
 import Auth from "./Auth";
 import Public from "./Public";
 import Home from "./Home";
 
+// Auth = <Auth handleAuthorize={App.handleAuthorize} />;
 class App extends Component {
   state = {
     isAuthorized: false
@@ -21,7 +22,7 @@ class App extends Component {
   }
 
   handleAuthorize = isAuthorized => {
-    this.setState({ isAuthorized });
+    this.setState({ isAuthorized: isAuthorized });
   };
 
   render() {
@@ -52,12 +53,21 @@ class App extends Component {
           </ul>
         </nav>
         <Switch>
-          <Route exact path="/auth" component={Auth} />
+          <Route
+            exact
+            path="/auth"
+            render={() => (
+              <Auth
+                handleAuthorize={this.handleAuthorize}
+                isAuthorized={this.state.isAuthorized}
+              />
+            )}
+          />
           {showPrivat()}
           <Route exact path="/public" component={Public} />
           <Route exact path="/" component={Home} />
           <Route component={Home} />
-        </Switch>;
+        </Switch>
       </div>
     );
   }
