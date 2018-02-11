@@ -6,8 +6,6 @@ import Private from "./Private";
 import Auth from "./Auth";
 import Public from "./Public";
 import Home from "./Home";
-
-// Auth = <Auth handleAuthorize={App.handleAuthorize} />;
 class App extends Component {
   state = {
     isAuthorized: false
