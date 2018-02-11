@@ -56,6 +56,7 @@ class App extends Component {
           {showPrivat()}
           <Route exact path="/public" component={Public} />
           <Route exact path="/" component={Home} />
+          <Route component={Home} />
         </Switch>;
       </div>
     );
