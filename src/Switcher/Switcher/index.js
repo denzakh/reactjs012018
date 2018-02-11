@@ -1,36 +1,58 @@
-import React, {Component} from 'react';
-import {Link, Route} from 'react-router-dom';
+import React, { Component } from "react";
+import { Link, Route } from "react-router-dom";
+import "./Switcher.css";
 
 export default class Switcher extends Component {
+  state = { selectedChild: 0 };
 
-// <Route path="/card" component={CardNumberHolder} />
-// <Route path="/modal" component={ModalButton} />
-// <Route path="/player" component={VideoPlayer} />
+  handleChangeChild = e => {
+    let item = e.target;
+    let id = item.getAttribute("data-id");
+    this.setState({ selectedChild: id });
+  };
 
   render() {
-
-    let list = React.Children.toArray(this.props.children, child => {
-      return { child };
+    let list = React.Children.map(this.props.children, (child, index) => {
+      return (
+        <li
+          className="component-list__name"
+          data-id={index}
+          key={index}
+          onClick={this.handleChangeChild}
+        >
+          {child.props.linkTitle}
+        </li>
+      );
     });
+
+    let componentList = React.Children.map(
+      this.props.children,
+      (child, index) => {
+        if (index == this.state.selectedChild) {
+          return child;
+        }
+      }
+    );
 
     console.dir(list);
 
-
-
-    return <div>
+    return (
+      <div className="switcher">
         <div>
-          <ul>
-            {React.Children.map(this.props.children, child => {
-              return <li>
-                  <Link to={child.props.path}>{child.props.linkTitle}</Link>
-                </li>;
-            })}
-          </ul>
+          <ul className="component-list">{list}</ul>
           <hr />
-            {React.Children.toArray(this.props.children, child => {
-              return <Route path={child.props.path} component={child.props.displayName} />;
-            })}
         </div>
-      </div>;
+        <div className="component-wrapper">{componentList}</div>
+      </div>
+    );
   }
 }
+
+// {React.Children.toArray(this.props.children, child => {
+//   return (
+//     <Route
+//       path={child.props.path}
+//       component={child.props.displayName}
+//     />
+//   );
+// })}
