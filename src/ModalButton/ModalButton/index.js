@@ -20,8 +20,8 @@ export default class ModalButton extends Component {
       if (this.state.isModalShow) {
         return (
           <Modal domNode={document.querySelector("#portal")} className="modal">
-            <div class="modal__fog">
-              <div class="modal__body">
+            <div className="modal__fog">
+              <div className="modal__body">
                 <h1>Модальное окно!</h1>
                 <button onClick={this.hideModal}>Close</button>
               </div>

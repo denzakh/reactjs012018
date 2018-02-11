@@ -13,7 +13,7 @@ export default class VideoPlayer extends Component {
 
   render() {
     return (
-      <div path={this.path} linkTitle={this.linkTitle} className="video-player">
+      <div className="video-player">
         <video
           ref={c => (this.video = c)}
           width="320"

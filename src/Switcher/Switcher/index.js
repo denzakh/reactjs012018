@@ -27,7 +27,7 @@ export default class Switcher extends Component {
     let componentList = React.Children.map(
       this.props.children,
       (child, index) => {
-        if (index == this.state.selectedChild) {
+        if (index === +this.state.selectedChild) {
           return child;
         }
       }
