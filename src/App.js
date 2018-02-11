@@ -1,10 +1,15 @@
-import React, {Component} from 'react';
-import './App.css';
-import {addListener, removeListener, isAuthorized} from './AuthorizeApi';
+import React, { Component } from "react";
+import "./App.css";
+import { addListener, removeListener, isAuthorized } from "./AuthorizeApi";
+import { Link, Switch, Route, Redirect } from "react-router-dom";
+import Private from "./Private";
+import Auth from "./Auth";
+import Public from "./Public";
+import Home from "./Home";
 
 class App extends Component {
   state = {
-    isAuthorized
+    isAuthorized: false
   };
 
   componentDidMount() {
@@ -16,11 +21,44 @@ class App extends Component {
   }
 
   handleAuthorize = isAuthorized => {
-    this.setState({isAuthorized});
+    this.setState({ isAuthorized });
   };
 
   render() {
-    return null;
+    let showPrivat = () => {
+      if (this.state.isAuthorized === true) {
+        return <Route path="/private" component={Private} />;
+      } else {
+        return <Redirect exact from="/private" to="/auth" />;
+      }
+    };
+
+    return (
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/auth">Войти</Link>
+            </li>
+            <li>
+              <Link to="/private">Секретная страница</Link>
+            </li>
+            <li>
+              <Link to="/public">Публичная страница</Link>
+            </li>
+            <li>
+              <Link to="/">Главная</Link>
+            </li>
+          </ul>
+        </nav>
+        <Switch>
+          <Route exact path="/auth" component={Auth} />
+          {showPrivat()}
+          <Route exact path="/public" component={Public} />
+          <Route exact path="/" component={Home} />
+        </Switch>;
+      </div>
+    );
   }
 }
 
