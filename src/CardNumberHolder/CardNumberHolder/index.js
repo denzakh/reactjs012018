@@ -4,12 +4,7 @@ import CardNumberInput from "../CardNumberInput";
 export default class CardNumberHolder extends Component {
   state = { cardNumber: "" };
 
-  static defaultProps = {
-    displayName: "CardNumberHolder",
-    linkTitle: "Card number formating",
-    path: "/card"
-  };
-  // path={this.path} linkTitle={this.linkTitle}>
+  static displayName = "Card number formating";
 
   handleChange = e => {
     let value = e.target.value;

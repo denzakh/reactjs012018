@@ -3,12 +3,6 @@ import "./VideoPlayer.css";
 import videoFile from "./Video.mp4";
 
 export default class VideoPlayer extends Component {
-  static defaultProps = {
-    displayName: "VideoPlayer",
-    linkTitle: "VideoPlayer",
-    path: "/player"
-  };
-
   handlePlay = () => {
     this.video.play();
   };

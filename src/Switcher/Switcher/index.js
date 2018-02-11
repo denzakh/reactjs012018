@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link, Route } from "react-router-dom";
 import "./Switcher.css";
 
 export default class Switcher extends Component {
@@ -20,7 +19,7 @@ export default class Switcher extends Component {
           key={index}
           onClick={this.handleChangeChild}
         >
-          {child.props.linkTitle}
+          {child.type.displayName || child.type.name}
         </li>
       );
     });
@@ -34,8 +33,6 @@ export default class Switcher extends Component {
       }
     );
 
-    console.dir(list);
-
     return (
       <div className="switcher">
         <div>
@@ -47,12 +44,3 @@ export default class Switcher extends Component {
     );
   }
 }
-
-// {React.Children.toArray(this.props.children, child => {
-//   return (
-//     <Route
-//       path={child.props.path}
-//       component={child.props.displayName}
-//     />
-//   );
-// })}

@@ -7,12 +7,6 @@ export default class ModalButton extends Component {
     isModalShow: false
   };
 
-  static defaultProps = {
-    displayName: "ModalButton",
-    linkTitle: "ModalButton",
-    path: "/modal"
-  };
-
   hideModal = () => {
     this.setState({ isModalShow: false });
   };
